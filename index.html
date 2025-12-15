@@ -239,6 +239,25 @@
     margin-bottom: 18px;
   }
 }
+/* form 内的标题/说明/付款块：强制整行（解决手机错位） */
+.reg-form .section-title,
+.reg-form .info{
+  grid-column: 1 / -1;
+}
+
+/* 付款块里 paypal 容器也全宽 */
+#paypal-button-container,
+#paymentMsg{
+  grid-column: 1 / -1;
+}
+
+/* 手机端：把所有 full-row 强制整行（你已写过，但这里更稳） */
+@media (max-width: 720px){
+  .reg-form{ grid-template-columns: 1fr; grid-gap: 14px; }
+  .full-row{ grid-column: 1 / -1; }
+  .submit-row{ grid-column: 1 / -1; text-align: center; }
+  button{ width: 100%; }
+}
 
 	
 </style>
@@ -758,7 +777,7 @@ Indonesia<br>
 
 		
         <!-- Declaration Section -->
-        <div class="section-title">Declaration</div>
+        <div class="section-title full-row">Declaration</div>
 
         <!-- Declaration 1 -->
         <div class="field full-row declaration">
