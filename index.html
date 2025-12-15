@@ -644,6 +644,80 @@ Indonesia<br>
             <input type="text" name="entry.272329421" required>
         </div>
 
+		<!-- Payment Section (Place BEFORE Declaration) -->
+<div class="section-title full-row">Entry Fee Payment</div>
+
+<div class="field full-row" style="margin-top:-6px;">
+  <div class="info" style="margin:0; font-size:14px; line-height:1.7;">
+    <span style="color:#ffffff;">
+      Please complete the entry fee payment of
+    </span>
+    <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+      160 USD
+    </span>
+    <span style="color:#ffffff;">
+      using one of the methods below. Your registration status will remain
+    </span>
+    <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+      Pending
+    </span>
+    <span style="color:#ffffff;">
+      until payment is verified.
+    </span>
+    <br>
+    <span style="color:#ff9999; font-size:13px;">
+      If PayPal button payment fails, please use the backup transfer method below.
+    </span>
+  </div>
+</div>
+
+<!-- Primary: PayPal Button -->
+<div class="field full-row">
+  <div class="declaration" style="padding:14px 14px;">
+    <div style="font-size:14px; font-weight:700; margin-bottom:8px;">
+      <span style="color:#ffffff;">Method A (Recommended):</span>
+      <span style="color:#ff4d4d; font-size:16px; font-weight:900;">PayPal Button</span>
+    </div>
+    <div id="paypal-button-container"></div>
+    <div id="paymentMsg" style="margin-top:10px; font-size:13px; color:#ff9999;"></div>
+  </div>
+</div>
+
+<!-- Backup: Direct Transfer to PayPal Account -->
+<div class="field full-row">
+  <div class="declaration" style="padding:14px 14px;">
+    <div style="font-size:14px; font-weight:700; margin-bottom:8px;">
+      <span style="color:#ffffff;">Method B (Backup):</span>
+      <span style="color:#ff4d4d; font-size:16px; font-weight:900;">Transfer directly to our PayPal account</span>
+    </div>
+
+    <div style="font-size:14px; line-height:1.8; color:#ffffff;">
+      <div>
+        <span style="opacity:0.9;">PayPal.Me Link:</span>
+        <a href="YOUR_PAYPALME_LINK" target="_blank"
+           style="color:#ffb347; font-weight:800; text-decoration:none;">
+          YOUR_PAYPALME_LINK
+        </a>
+      </div>
+
+      <div style="margin-top:6px;">
+        <span style="opacity:0.9;">Or send payment to PayPal Email:</span>
+        <span style="color:#ffb347; font-weight:800;">your-paypal@email.com</span>
+      </div>
+
+      <div style="margin-top:10px; font-size:13px; color:#ff9999;">
+        Important: Please include your
+        <span style="color:#ff4d4d; font-weight:900;">Full Name</span>
+        and
+        <span style="color:#ff4d4d; font-weight:900;">Category (Men/Women/Junior)</span>
+        in the payment note for verification.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+		
         <!-- Declaration Section -->
         <div class="section-title">Declaration</div>
 
@@ -705,16 +779,6 @@ Indonesia<br>
 
     <iframe name="hidden_iframe" style="display:none;"></iframe>
 
-    <!-- Payment Section -->
-    <div class="payment-section">
-        <div class="section-title">Entry Fee Payment</div>
-        <div class="info">
-            Please complete the entry fee payment of <strong>160 USD</strong> via PayPal.  
-            Once the payment is successful, the “Submit Registration” button will be activated.<br>請透過 PayPal 完成 <strong>160 美元</strong> 的報名費支付。支付成功後，「提交報名表」按鈕將會啟用。
-        </div>
-        <div id="paypal-button-container"></div>
-    </div>
-
 </div>
 
 <!-- PayPal SDK -->
@@ -730,14 +794,24 @@ paypal.Buttons({
         });
     },
     onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-            alert("Payment successful! You may now submit your registration.");
-        });
-    },
+    return actions.order.capture().then(function(details) {
+      var el = document.getElementById("paymentMsg");
+      if (el) {
+        el.innerHTML = "Payment completed. Please submit your registration. (Status will be confirmed after verification.)";
+      } else {
+        alert("Payment completed. Please submit your registration.");
+      }
+    });
+  },
     onError: function(err) {
-        alert("Payment failed. Please try again.");
-        console.error(err);
+    var el = document.getElementById("paymentMsg");
+    if (el) {
+      el.innerHTML = "PayPal payment could not be completed. Please use Method B (PayPal transfer) as a backup.";
+    } else {
+      alert("PayPal payment failed. Please use the backup PayPal transfer method.");
     }
+    console.error(err);
+  }
 }).render('#paypal-button-container');
 </script>
 
