@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Asian Pool Championship – Official Player Registration</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Segoe UI", Roboto, Arial, sans-serif;
+        background: #0b0c0f;
+        color: #ffffff;
+        background-image: radial-gradient(circle at 20% 30%, rgba(255, 60, 0, 0.16) 0%, transparent 45%),
+                          radial-gradient(circle at 80% 70%, rgba(255, 30, 0, 0.12) 0%, transparent 50%),
+                          linear-gradient(180deg, #0b0b0d 0%, #000000 100%);
+        background-attachment: fixed;
+    }
+
+    .header {
+        text-align: center;
+        padding: 40px 20px 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+	
+    /* Event Logo */
+    .event-logo {
+       height: 250px;          /* 可改：80 / 100 / 120 */
+       margin-bottom: 16px;
+       object-fit: contain;
+    }
+
+/* Mobile adjustment */
+     @media (max-width: 720px) {
+        .event-logo {
+        height: 70px;
+    }
+}
+
+    .header img.logo {
+        height: 85px;
+        margin-bottom: 12px;
+    }
+
+    .header h1 {
+        margin: 8px 0 0;
+        font-size: 32px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .header h2 {
+        margin: 6px 0 0;
+        font-size: 22px;
+        font-weight: 500;
+        opacity: 0.9;
+    }
+
+    .header h3 {
+        margin: 6px 0 0;
+        font-size: 18px;
+        font-weight: 500;
+        opacity: 0.9;
+    }
+
+    .header p {
+        margin-top: 8px;
+        opacity: 0.85;
+        font-size: 16px;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px 30px 34px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .section-title {
+        font-size: 20px;
+        font-weight: 600;
+        border-left: 4px solid #d4af37;
+        padding-left: 12px;
+        margin-bottom: 14px;
+    }
+
+    .info {
+        font-size: 15px;
+        opacity: 0.9;
+        line-height: 1.7;
+        margin-bottom: 28px;
+    }
+
+    /* form layout */
+    .reg-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px 28px;
+    }
+
+    .full-row {
+        grid-column: 1 / 3;
+    }
+
+    .field label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 6px;
+        opacity: 0.88;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.18);
+        background: rgba(15, 15, 20, 0.9);
+        color: #fff;
+        font-size: 15px;
+        box-sizing: border-box;
+    }
+
+    /* 声明勾选样式 */
+    .declaration {
+        background: rgba(0,0,0,0.25);
+        border-radius: 10px;
+        padding: 10px 12px;
+        border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .declaration label {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 13px;
+        line-height: 1.5;
+        opacity: 0.9;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    .declaration input[type="checkbox"] {
+        margin-top: 2px;
+        width: auto;
+        min-width: 16px;
+        height: 16px;
+    }
+
+    .submit-row {
+        grid-column: 1 / 3;
+        text-align: right;
+        margin-top: 10px;
+    }
+
+    button {
+        padding: 12px 30px;
+        font-size: 15px;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        background: linear-gradient(120deg, #ff5b3a, #ffb347);
+        color: #0a0a0d;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+
+    button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    button:hover:not(:disabled) {
+        filter: brightness(1.09);
+    }
+
+    .payment-note {
+        font-size: 12px;
+        color: #ff9999;
+        margin-top: 6px;
+        text-align: right;
+    }
+
+    .payment-section {
+        margin-top: 28px;
+    }
+
+    @media (max-width: 720px) {
+        .reg-form {
+            grid-template-columns: 1fr;
+        }
+        .full-row {
+            grid-column: 1 / 2;
+        }
+        .submit-row {
+            text-align: center;
+        }
+        .payment-note {
+            text-align: center;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">
+
+    <img src="images/2025APC.png"
+         alt="Asian Pool Championship Logo"
+         class="event-logo">
+    <h1>Asian Pool Championship 2025</h1>
+    <h2>Stage 1 Registration Portal</h2>
+    <h3>Entry Fee: 150 USD</h3>
+    <div style="
+        color:#ff4d4d;
+        font-size:16px;
+        font-weight:600;
+        margin-top:10px;
+        padding:10px 16px;
+        border:1px solid rgba(255,0,0,0.4);
+        border-radius:8px;
+        display:inline-block;
+        background:rgba(255,0,0,0.08);
+    ">
+        This registration form is only for Stage 1 participants.<br>
+        此報名表僅供 Stage 1 的參賽選手填寫
+    </div>
+</div>
+
+<!-- Content -->
+<div class="container">
+
+    <!-- Event Date Section -->
+    <div class="section-title">Event Schedule</div>
+
+    <div class="info" style="font-size:18px; line-height:1.8;">
+        <strong>Event Date:</strong> January 24–31, 2026<br>
+        <strong>Stage 1 Qualifiers:</strong> January 24–26, 2026<br>
+        <strong>Stage 2 Main Event:</strong> January 27–31, 2026<br>
+        <strong>Location:</strong> Jakarta, Indonesia<br>
+    </div>
+
+    <br>
+
+    <div class="section-title">Notification</div>
+
+    <div class="info" style="font-size:18px; line-height:1.8;">
+        <p style="font-size:16px; font-weight:500; line-height:1.7;">
+    <strong>
+        <span style="color:#ffffff;">
+            1. This form is exclusively for
+        </span>
+
+        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+            Stage 1 players
+        </span>
+
+        <span style="color:#ffffff;">
+            of the 2025 Asian Pool Championship
+        </span>
+
+        
+
+        <span style="color:#ffffff;">
+            to complete registration and pay the
+        </span>
+
+        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+            entry fee of 150 USD
+        </span>
+        <span style="color:#ffffff;">.</span>
+       
+
+        <span style="color:#ff4d4d; font-size:20px; font-weight:900;">
+            It does not apply to Stage 2 players.
+        </span>
+    </strong>
+	<p style="font-size:16px; font-weight:500; line-height:1.7;">
+    <strong>
+        <span style="color:#ffffff;">
+            本報名表僅供
+        </span>
+
+        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+            第一階段（Stage 1）參賽選手
+        </span>
+
+        <span style="color:#ffffff;">
+            報名 2025亞洲撞球錦標賽
+        </span> 
+
+        <span style="color:#ffffff;">
+            使用，並完成報名及繳納
+        </span>
+
+        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+            150 美元報名費
+        </span>
+        <span style="color:#ffffff;">。</span>
+        <br>
+
+        <span style="color:#ff4d4d; font-size:20px; font-weight:900;">
+            本報名表不適用於第二階段（Stage 2）之參賽選手
+        </span>
+    </strong>
+</p>
+
+</p>
+
+</p>
+        <p style="font-size:16px; font-weight:500; line-height:1.7; margin-top:10px;">
+    <strong>
+        <span style="color:#ffffff;">
+            2. This registration fee of
+        </span>
+
+        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+            150 USD
+        </span>
+
+        <span style="color:#ffffff;">
+            applies
+        </span>
+
+        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+            exclusively to Stage 1 participation
+        </span>
+        <span style="color:#ffffff;">.</span>
+        <br>
+
+        <span style="color:#ffffff;">
+            Should you successfully qualify for Stage 2, an additional
+        </span>
+
+        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+            200 USD
+        </span>
+
+        <span style="color:#ffffff;">
+            registration fee must be
+        </span>
+
+        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+            paid on-site
+        </span>
+        <span style="color:#ffffff;">.</span>
+    </strong>
+	<p style="font-size:16px; font-weight:500; line-height:1.7; margin-top:10px;">
+    <strong>
+        <span style="color:#ffffff;">
+            本次報名費為
+        </span>
+
+        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+            150 美元
+        </span>
+
+        <span style="color:#ffffff;">
+            ，僅適用於
+        </span>
+
+        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+            第一階段（Stage 1）賽事參賽
+        </span>
+        <span style="color:#ffffff;">。</span>
+        <br>
+
+        <span style="color:#ffffff;">
+            如成功晉級第二階段（Stage 2），則須另行繳納
+        </span>
+
+        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+            200 美元
+        </span>
+
+        <span style="color:#ffffff;">
+            之報名費，並須於
+        </span>
+
+        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
+            現場繳納
+        </span>
+        <span style="color:#ffffff;">。</span>
+    </strong>
+</p>
+
+</p>
+
+
+     
+       
+    </div>
+
+    <br>
+
+    <div class="section-title">Player Information & Registration</div>
+
+    <!-- Registration Form (custom UI → submit to Google Form) -->
+    <form class="reg-form"
+          action="https://docs.google.com/forms/d/e/1FAIpQLScdCmhnP5_YyJvFfXQIZ5lToibcnRUn-uZOZdSVF7tZ05to1g/formResponse"
+          method="POST"
+    >
+        <!-- Category & Event Selection -->
+<div class="field full-row">
+  <label>Category &amp; Event Selection (組別選擇) *</label>
+
+  <div style="display:flex; gap:16px; flex-wrap:wrap; padding:10px 12px; border:1px solid rgba(255,255,255,0.12); border-radius:10px; background:rgba(0,0,0,0.18);">
+    <label style="display:flex; align-items:center; gap:8px; margin:0; cursor:pointer;">
+      <input type="radio" name="entry.1089766370" value="Men" required>
+      <span>Men</span>
+    </label>
+
+    <label style="display:flex; align-items:center; gap:8px; margin:0; cursor:pointer;">
+      <input type="radio" name="entry.1089766370" value="Women" required>
+      <span>Women</span>
+    </label>
+
+    <label style="display:flex; align-items:center; gap:8px; margin:0; cursor:pointer;">
+      <input type="radio" name="entry.1089766370" value="Junior" required>
+      <span>Junior</span>
+    </label>
+  </div>
+</div>
+
+        <!-- Full Name -->
+        <div class="field full-row">
+            <label>Full Name (Passport Name) 全名（護照名） *</label>
+            <input type="text" name="entry.1964552089" required>
+        </div>
+
+        <!-- Country -->
+        <div class="field">
+            <label>Country (國籍)*</label>
+            <input type="text" name="entry.594902668" required>
+        </div>
+
+        <!-- Email -->
+        <div class="field">
+            <label>Email (郵箱)*</label>
+            <input type="email" name="entry.1076267609" required>
+        </div>
+
+        <!-- WhatsApp / WeChat / Phone -->
+        <div class="field">
+            <label>WhatsApp /WeChat /Phone (include Country Code) WhatsApp/ 微信/ 電話 *</label>
+            <input type="text" name="entry.323563260" required>
+        </div>
+	
+	<!-- Emergency Contact -->
+        <div class="field full-row">
+            <label>Emergency Contact Name（緊急聯繫人） *</label>
+            <input type="text" name="entry.402595991" required>
+        </div>
+
+        <!-- Emergency Contact -->
+        <div class="field full-row">
+            <label>Emergency Contact Number（緊急聯繫人電話） *</label>
+            <input type="text" name="entry.272329421" required>
+        </div>
+
+        <!-- Declaration Section -->
+        <div class="section-title">Declaration</div>
+
+        <!-- Declaration 1 -->
+        <div class="field full-row declaration">
+          <label>
+            <input type="checkbox"
+                   name="entry.297638710"
+                   value="I have read, understood, and agree to all the above declarations and terms."
+                   required>
+            <span>
+              I confirm that all personal, contact, and participation information provided in this form is true,
+              accurate, and complete. I understand that any false or misleading information may result in
+              disqualification.<br>本人確認本表格所填寫之所有個人資料、聯繫方式及參賽相關資訊，均屬真實、準確且完整。本人瞭解，若提供任何虛假或誤導性資訊，將可能導致參賽資格被取消
+            </span>
+          </label>
+        </div>
+
+        <!-- Declaration 2 -->
+        <div class="field full-row declaration">
+          <label>
+            <input type="checkbox"
+                   name="entry.373855028"
+                   value="I have read, understood, and agree to all the above declarations and terms."
+                   required>
+            <span>
+              I consent to the event organizers, sponsors, and authorized media using my name, photograph, video
+              footage, and competition performance for event promotion, media coverage, sponsor marketing, and
+              historical archives, with no additional compensation.<br>本人同意賽事主辦單位、贊助商及授權媒體，得於無須另行支付任何補償之情況下，將本人之姓名、肖像、拍攝畫面及參賽表現，用於賽事宣傳、媒體報導、贊助商行銷推廣及歷史檔案留存等用途。
+            </span>
+          </label>
+        </div>
+
+        <!-- Declaration 3 -->
+        <div class="field full-row declaration">
+          <label>
+            <input type="checkbox"
+                   name="entry.1709603742"
+                   value="I have read, understood, and agree to all the above declarations and terms."
+                   required>
+            <span>
+              I acknowledge and agree to abide by all official rules, regulations, and referee decisions of the
+              event. I understand that the referee’s judgment is final and irrevocable.<br>本人知悉並同意遵守本賽事之一切官方規章、制度，以及裁判之判決。本人瞭解，裁判之裁定為最終決定，且不得異議。
+            </span>
+          </label>
+        </div>
+
+        <!-- Submit (locked before payment) -->
+        <div class="submit-row">
+            <button type="submit" id="submitBtn" disabled>Submit Registration</button>
+            <div class="payment-note">
+                Please complete the PayPal payment below to activate the submission button.<br>請完成下方PayPal支付，即可激活提交按鈕
+            </div>
+        </div>
+    </form>
+
+    <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+    <!-- Payment Section -->
+    <div class="payment-section">
+        <div class="section-title">Entry Fee Payment</div>
+        <div class="info">
+            Please complete the entry fee payment of <strong>150 USD</strong> via PayPal.  
+            Once the payment is successful, the “Submit Registration” button will be activated.<br>請透過 PayPal 完成 <strong>150 美元</strong> 的報名費支付。支付成功後，「提交報名表」按鈕將會啟用。
+        </div>
+        <div id="paypal-button-container"></div>
+    </div>
+
+</div>
+
+<!-- PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=ARDkLfOQCwWNCCc5bjebzqN14vo-ZLNkSzBQWzyw0OkCINOY7rLg6BXIudTH_YYXoheumX84mFL4UNvX&currency=USD"></script>
+
+<script>
+paypal.Buttons({
+    createOrder: function(data, actions) {
+        return actions.order.create({
+            purchase_units: [{
+                amount: { value: '150.00' } // Entry fee USD 150
+            }]
+        });
+    },
+    onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+            // 付款成功 → 解锁提交按钮
+            var submitBtn = document.getElementById("submitBtn");
+            if (submitBtn) {
+                submitBtn.disabled = false;
+            }
+            alert("Payment successful! You may now submit your registration.");
+        });
+    },
+    onError: function(err) {
+        alert("Payment failed. Please try again.");
+        console.error(err);
+    }
+}).render('#paypal-button-container');
+</script>
+
+</body>
+</html>
