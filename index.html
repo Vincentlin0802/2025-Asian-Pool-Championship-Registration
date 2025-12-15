@@ -693,9 +693,12 @@ Indonesia<br>
 
         <!-- Submit (locked before payment) -->
         <div class="submit-row">
-            <button type="submit" id="submitBtn" disabled>Submit Registration</button>
+            <button type="submit" id="submitBtn" >Submit Registration</button>
             <div class="payment-note">
-                Please complete the PayPal payment below to activate the submission button.<br>請完成下方PayPal支付，即可激活提交按鈕
+                <p style="font-size:13px; color:#ff9999; margin-top:8px;">
+  Registration will be reviewed and confirmed after payment verification.
+  Please ensure your payment is completed.
+</p>
             </div>
         </div>
     </form>
@@ -728,11 +731,6 @@ paypal.Buttons({
     },
     onApprove: function(data, actions) {
         return actions.order.capture().then(function(details) {
-            // 付款成功 → 解锁提交按钮
-            var submitBtn = document.getElementById("submitBtn");
-            if (submitBtn) {
-                submitBtn.disabled = false;
-            }
             alert("Payment successful! You may now submit your registration.");
         });
     },
