@@ -258,6 +258,37 @@
   .submit-row{ grid-column: 1 / -1; text-align: center; }
   button{ width: 100%; }
 }
+/* ===== Category (Men / Women / Junior) horizontal layout ===== */
+
+.category-options {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  background: rgba(0,0,0,0.18);
+}
+
+.category-item {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+/* 手机端：稍微收紧一点 */
+@media (max-width: 720px) {
+  .category-options {
+    gap: 14px;
+  }
+  .category-item {
+    font-size: 14px;
+  }
+}
 
 	
 </style>
@@ -646,25 +677,27 @@ Indonesia<br>
     >
         <!-- Category & Event Selection -->
 <div class="field full-row">
+  <div class="field full-row">
   <label>Category &amp; Event Selection (組別選擇) *</label>
 
-  <div style="display:flex; gap:16px; flex-wrap:wrap; padding:10px 12px; border:1px solid rgba(255,255,255,0.12); border-radius:10px; background:rgba(0,0,0,0.18);">
-    <label style="display:flex; align-items:center; gap:8px; margin:0; cursor:pointer;">
+  <div class="category-options">
+    <label class="category-item">
       <input type="radio" name="entry.1089766370" value="Men" required>
       <span>Men</span>
     </label>
 
-    <label style="display:flex; align-items:center; gap:8px; margin:0; cursor:pointer;">
+    <label class="category-item">
       <input type="radio" name="entry.1089766370" value="Women" required>
       <span>Women</span>
     </label>
 
-    <label style="display:flex; align-items:center; gap:8px; margin:0; cursor:pointer;">
+    <label class="category-item">
       <input type="radio" name="entry.1089766370" value="Junior" required>
       <span>Junior</span>
     </label>
   </div>
 </div>
+
 
         <!-- Full Name -->
         <div class="field full-row">
