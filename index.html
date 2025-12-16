@@ -15,6 +15,7 @@
     --muted: rgba(255,255,255,0.86);
     --gold:#d4af37;
     --red:#ff4d4d;
+    --warn:#ff9999;
   }
 
   *{ box-sizing:border-box; }
@@ -37,7 +38,6 @@
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 
-  /* Event Logo */
   .event-logo{
     height: clamp(150px, 22vw, 230px);
     margin: 0 auto 16px;
@@ -65,11 +65,6 @@
     font-weight:500;
     opacity:0.9;
   }
-  .header p{
-    margin-top:8px;
-    opacity:0.85;
-    font-size:16px;
-  }
 
   .container{
     max-width:900px;
@@ -89,6 +84,7 @@
     margin: 0 0 14px;
   }
 
+  /* 默认 info（给联系方式/赛程这种可稍大块使用） */
   .info{
     font-size:15px;
     opacity:0.92;
@@ -96,16 +92,31 @@
     margin:0 0 28px;
   }
 
+  /* 统一“说明性文本”（Notification/Regulations/Player Info 上方提示等） */
+  .desc{
+    margin: 8px 0;
+    font-size:14px;
+    line-height:1.7;
+    color: rgba(255,255,255,0.92);
+    font-weight:500;
+  }
+  .desc strong{ font-weight:800; }
+  .em{
+    color: var(--red);
+    font-size:16px;
+    font-weight:900;
+  }
+  .em.big{ font-size:17px; }
+
   /* ========== FORM GRID ========== */
   .reg-form{
     display:grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px 28px;
   }
-
   .full-row{ grid-column: 1 / -1; }
 
-  /* 关键：只把“字段标题label”设为 block，不要误伤 category 选项 label */
+  /* 只影响字段标题，不影响里面的 option label */
   .field > label{
     display:block;
     font-size:14px;
@@ -162,8 +173,6 @@
     border-radius:10px;
     background: rgba(0,0,0,0.18);
   }
-
-  /* 关键：这里强制 inline-flex，抵消任何 label block 影响 */
   .category-options > label{
     display:inline-flex !important;
     align-items:center;
@@ -172,10 +181,7 @@
     cursor:pointer;
     font-size:15px;
   }
-
-  .category-options input[type="radio"]{
-    width:auto;
-  }
+  .category-options input[type="radio"]{ width:auto; }
 
   /* ========== SUBMIT BUTTON ========== */
   .submit-row{
@@ -201,7 +207,7 @@
 
   .payment-note{
     font-size:12px;
-    color:#ff9999;
+    color: var(--warn);
     margin-top:6px;
     text-align:right;
   }
@@ -210,6 +216,63 @@
   .container, .info, .declaration, .payment-note, a, span{
     overflow-wrap:anywhere;
     word-break:break-word;
+  }
+
+  /* ========== PAYMENT TYPOGRAPHY (你原本那套保留并优化) ========== */
+  .pay-info{ margin-top:-6px; }
+
+  .pay-line{
+    margin: 8px 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.92);
+    font-weight:500;
+  }
+
+  .pay-line.zh{ margin-top: 14px; }
+
+  .pay-box{
+    margin-top: 10px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    background: rgba(0,0,0,0.22);
+  }
+
+  .pay-subtitle{
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .pay-list{
+    margin: 0 0 8px 18px;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.92);
+  }
+
+  .pay-warning{
+    margin: 10px 0 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--warn);
+    font-weight: 800;
+  }
+
+  .pay-note{
+    margin: 12px 0 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--warn);
+  }
+
+  .em-red{
+    color: var(--red);
+    font-size: 16px;
+    font-weight: 900;
   }
 
   /* ========== MOBILE ========== */
@@ -231,6 +294,10 @@
     .section-title{ font-size:17px; margin-bottom:10px; }
     .info{ font-size:14px; line-height:1.6; margin-bottom:18px; }
 
+    .desc{ font-size:13px; line-height:1.6; }
+    .em{ font-size:15px; }
+    .em.big{ font-size:16px; }
+
     .reg-form{
       grid-template-columns: 1fr;
       gap:14px;
@@ -247,735 +314,443 @@
     .category-options{ gap:12px; }
     .category-options > label{ font-size:14px; }
     .payment-note{ text-align:center; }
+
+    .pay-line, .pay-list{ font-size: 13px; }
+    .em-red{ font-size: 15px; }
+    .pay-warning, .pay-note{ font-size: 12.5px; }
   }
-	.pay-info{
-  margin-top: -6px;
-}
-
-.pay-line{
-  margin: 8px 0;
-  font-size: 14px;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.92);
-}
-
-.pay-line.zh{
-  margin-top: 14px;
-}
-
-.pay-box{
-  margin-top: 10px;
-  padding: 12px 14px;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 12px;
-  background: rgba(0,0,0,0.22);
-}
-
-.pay-subtitle{
-  margin: 0 0 8px;
-  font-size: 14px;
-  font-weight: 800;
-  color: #ffffff;
-}
-
-.pay-list{
-  margin: 0 0 8px 18px;
-  padding: 0;
-  font-size: 14px;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.92);
-}
-
-.pay-warning{
-  margin: 10px 0 0;
-  font-size: 13px;
-  line-height: 1.6;
-  color: #ff9999;
-  font-weight: 700;
-}
-
-.pay-note{
-  margin: 12px 0 0;
-  font-size: 13px;
-  line-height: 1.6;
-  color: #ff9999;
-}
-
-.em-red{
-  color: #ff4d4d;
-  font-size: 16px;
-  font-weight: 900;
-}
-
-/* Mobile:整体字体稍微小一点、更紧凑 */
-@media (max-width: 720px){
-  .pay-line, .pay-list{ font-size: 13px; }
-  .em-red{ font-size: 15px; }
-  .pay-warning, .pay-note{ font-size: 12.5px; }
-}
-
 </style>
-
 </head>
 
 <body>
 
 <!-- Header -->
 <div class="header">
+  <img src="images/2025APC.png" alt="Asian Pool Championship Logo" class="event-logo">
+  <h1>Asian Pool Championship 2025</h1>
+  <h2>Stage 1 Registration Portal</h2>
+  <h3>Entry Fee: 160 USD ($150 Entry Fee + $10 Paypal Fee）</h3>
 
-    <img src="images/2025APC.png"
-         alt="Asian Pool Championship Logo"
-         class="event-logo">
-    <h1>Asian Pool Championship 2025</h1>
-    <h2>Stage 1 Registration Portal</h2>
-    <h3>Entry Fee: 160 USD ($150 Entry Fee + $10 Paypal Fee）</h3>
-    <div style="
-        color:#ff4d4d;
-        font-size:16px;
-        font-weight:600;
-        margin-top:10px;
-        padding:10px 16px;
-        border:1px solid rgba(255,0,0,0.4);
-        border-radius:8px;
-        display:inline-block;
-        background:rgba(255,0,0,0.08);
-    ">
-        This registration form is only for Stage 1 participants.<br>
-        此報名表僅供 Stage 1 的參賽選手填寫
-    </div>
-	<h3>For any inquiries, please feel free to reach us at the contact information below</h3>
+  <div style="
+      color:#ff4d4d;
+      font-size:16px;
+      font-weight:600;
+      margin-top:10px;
+      padding:10px 16px;
+      border:1px solid rgba(255,0,0,0.4);
+      border-radius:8px;
+      display:inline-block;
+      background:rgba(255,0,0,0.08);
+  ">
+    This registration form is only for Stage 1 participants.<br>
+    此報名表僅供 Stage 1 的參賽選手填寫
+  </div>
+
+  <h3>For any inquiries, please feel free to reach us at the contact information below</h3>
 </div>
 
 <!-- Content -->
 <div class="container">
-	
-	<!-- Official Contact Information Section -->
-    <div class="section-title">Official Contact Information</div>
 
-    <div class="info" style="font-size:18px; line-height:1.8;">
-        <strong>Email:</strong> asianchampionship@andycloth.com<br>
-        <strong>Whatsapp:</strong> +8615021135287<br>
-        <strong>Wechat:</strong> +8616621617652<br>
-    </div>
+  <!-- Official Contact Information Section -->
+  <div class="section-title">Official Contact Information</div>
+  <div class="info" style="font-size:18px; line-height:1.8;">
+    <strong>Email:</strong> asianchampionship@andycloth.com<br>
+    <strong>Whatsapp:</strong> +8615021135287<br>
+    <strong>Wechat:</strong> +8616621617652<br>
+  </div>
 
-    <br>
-	
-    <!-- Event Date Section -->
-    <div class="section-title">Event Schedule</div>
+  <!-- Event Date Section -->
+  <div class="section-title">Event Schedule</div>
+  <div class="info" style="font-size:18px; line-height:1.8;">
+    <strong>Event Date:</strong> January 24–31, 2026<br>
+    <strong>Stage 1 Qualifiers:</strong> January 24–26, 2026<br>
+    <strong>Stage 2 Main Event:</strong> January 27–31, 2026<br>
+    <strong>Location:</strong> PUSLATNAS POBSI<br>
+    iNews Tower 4th Floor<br>
+    Jl. Kebon Sirih Kav. 17-19,<br>
+    Kebon Sirih, Menteng,<br>
+    Jakarta Pusat 10340<br>
+    Indonesia<br>
+  </div>
 
-    <div class="info" style="font-size:18px; line-height:1.8;">
-        <strong>Event Date:</strong> January 24–31, 2026<br>
-        <strong>Stage 1 Qualifiers:</strong> January 24–26, 2026<br>
-        <strong>Stage 2 Main Event:</strong> January 27–31, 2026<br>
-        <strong>Location:</strong> PUSLATNAS POBSI
-iNews Tower 4th Floor
-Jl. Kebon Sirih Kav. 17-19, 
-Kebon Sirih, Menteng,
-Jakarta Pusat 10340
-Indonesia<br>
-    </div>
-
-    <br>
-
-    <div class="section-title">Notification</div>
-
-    <div class="info" style="font-size:18px; line-height:1.8;">
-        <p style="font-size:16px; font-weight:500; line-height:1.7;">
-    <strong>
-        <span style="color:#ffffff;">
-            1. This form is exclusively for
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            Stage 1 players
-        </span>
-
-        <span style="color:#ffffff;">
-            of the 2025 Asian Pool Championship
-        </span>
-
-        
-
-        <span style="color:#ffffff;">
-            to complete registration and pay the
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            entry fee of 160 USD($150 Entry Fee + $10 Paypal Fee) 
-        </span>
-        <span style="color:#ffffff;">.</span>
-       
-
-        <span style="color:#ff4d4d; font-size:20px; font-weight:900;">
-            It does not apply to Stage 2 players.
-        </span>
-    </strong>
-	<p style="font-size:16px; font-weight:500; line-height:1.7;">
-    <strong>
-        <span style="color:#ffffff;">
-            本報名表僅供
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            第一階段（Stage 1）參賽選手
-        </span>
-
-        <span style="color:#ffffff;">
-            報名 2025亞洲撞球錦標賽
-        </span> 
-
-        <span style="color:#ffffff;">
-            使用，並完成報名及繳納
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            160 美元（150 美元报名费 + 10 美元手续费）
-        </span>
-        <span style="color:#ffffff;">。</span>
-        <br>
-
-        <span style="color:#ff4d4d; font-size:20px; font-weight:900;">
-            本報名表不適用於第二階段（Stage 2）之參賽選手
-        </span>
-    </strong>
-</p>
-
-
-</p>
-
-</p>
-        <p style="font-size:16px; font-weight:500; line-height:1.7; margin-top:10px;">
-    <strong>
-        <span style="color:#ffffff;">
-            2. This registration fee of
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            160 USD($150 Entry Fee + $10 Paypal Fee)
-        </span>
-
-        <span style="color:#ffffff;">
-            applies
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            exclusively to Stage 1 participation
-        </span>
-        <span style="color:#ffffff;">.</span>
-        <br>
-
-        <span style="color:#ffffff;">
-            Should you successfully qualify for Stage 2, an additional
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            200 USD
-        </span>
-
-        <span style="color:#ffffff;">
-            registration fee must be
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            paid on-site
-        </span>
-        <span style="color:#ffffff;">.</span>
-    </strong>
-	<p style="font-size:16px; font-weight:500; line-height:1.7; margin-top:10px;">
-    <strong>
-        <span style="color:#ffffff;">
-            本次報名費為
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            160 美元（150 美元报名费 + 10 美元手续费）
-        </span>
-
-        <span style="color:#ffffff;">
-            ，僅適用於
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            第一階段（Stage 1）賽事參賽
-        </span>
-        <span style="color:#ffffff;">。</span>
-        <br>
-
-        <span style="color:#ffffff;">
-            如成功晉級第二階段（Stage 2），則須另行繳納
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            200 美元
-        </span>
-
-        <span style="color:#ffffff;">
-            之報名費，並須於
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            現場繳納
-        </span>
-        <span style="color:#ffffff;">。</span>
-    </strong><br>
-	<br>
-</p>
-	<div class="section-title">Regulations</div>
-<p style="font-size:16px; font-weight:500; line-height:1.7; margin-top:14px;">
-    <strong>
-        <span style="color:#ffffff;">
-            1. Stage 1 registration is subject to limited capacity and will be
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            closed once full
-        </span>
-        <span style="color:#ffffff;">.</span>
-        <br><br>
-
-        <span style="color:#ffffff;">
-            Stage 1 player capacity by category:
-        </span>
-        <br>
-
-        <span style="color:#ffffff;">
-            Men’s Division:
-        </span>
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            96 players
-        </span>
-        <br>
-
-        <span style="color:#ffffff;">
-            Women’s Division:
-        </span>
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            32 players
-        </span>
-        <br>
-
-        <span style="color:#ffffff;">
-            Junior Division:
-        </span>
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            16 players
-        </span>
-    </strong>
-</p>
-	<p style="font-size:16px; font-weight:500; line-height:1.7; margin-top:10px;">
-    <strong>
-        <span style="color:#ffffff;">
-            1. 第一階段（Stage 1）報名名額有限，報名將於
-        </span>
-
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            額滿即截止
-        </span>
-        <span style="color:#ffffff;">。</span>
-        <br><br>
-
-        <span style="color:#ffffff;">
-            第一階段各組別參賽名額如下：
-        </span>
-        <br>
-
-        <span style="color:#ffffff;">
-            男子組：
-        </span>
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            96 人
-        </span>
-        <br>
-
-        <span style="color:#ffffff;">
-            女子組：
-        </span>
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            32 人
-        </span>
-        <br>
-
-        <span style="color:#ffffff;">
-            青少年組：
-        </span>
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            16 人
-        </span>
-    </strong>
-</p>
-<p style="font-size:16px; font-weight:500; line-height:1.7; margin-top:14px;">
-    <strong>
-        <span style="color:#ffffff;">
-            2. Stage 2 qualification will be determined from Stage 1 participants
-            based on the following selection criteria:
-        </span>
-        <br><br>
-
-        <span style="color:#ffffff;">
-            Men’s Division:
-        </span>
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            12 players selected from 96
-        </span>
-        <br>
-
-        <span style="color:#ffffff;">
-            Women’s Division:
-        </span>
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            4 players selected from 32
-        </span>
-        <br>
-
-        <span style="color:#ffffff;">
-            Junior Division:
-        </span>
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            4 players selected from 16
-        </span>
-    </strong>
-</p>
-<p style="font-size:16px; font-weight:500; line-height:1.7; margin-top:10px;">
-    <strong>
-        <span style="color:#ffffff;">
-            2. 第二階段（Stage 2）之參賽資格，將自第一階段（Stage 1）參賽選手中，
-            依下列人數標準進行選拔：
-        </span>
-        <br><br>
-
-        <span style="color:#ffffff;">
-            男子組：
-        </span>
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            自 96 人中選拔 12 人
-        </span>
-        <br>
-
-        <span style="color:#ffffff;">
-            女子組：
-        </span>
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            自 32 人中選拔 4 人
-        </span>
-        <br>
-
-        <span style="color:#ffffff;">
-            青少年組：
-        </span>
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">
-            自 16 人中選拔 4 人
-        </span>
-    </strong>
-</p>
-
-
-</p>
-
-
-     
-       
-    </div>
-
-    <br>
-
-    <div class="section-title">Player Information & Registration</div>
-	<div class="info">
-    <p style="margin:6px 0; font-size:16px; font-weight:500; line-height:1.7; color:#ffffff;">
+  <!-- Notification -->
+  <div class="section-title">Notification</div>
+  <div class="info" style="margin-bottom:18px;">
+    <p class="desc">
       <strong>
-        Fill in the Player Information section with
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">true and accurate details</span>
-        and double-check all entries carefully. This affects the
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">success of your registration</span>,
-        organizer
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">communication</span>,
-        and the
-        <span style="color:#ff4d4d; font-size:18px; font-weight:900;">release of competition schedules</span>.
+        <span style="color:#ffffff;">1. This form is exclusively for </span>
+        <span class="em">Stage 1 players</span>
+        <span style="color:#ffffff;"> of the 2025 Asian Pool Championship to complete registration and pay the </span>
+        <span class="em">entry fee of 160 USD ($150 Entry Fee + $10 PayPal Fee)</span>
+        <span style="color:#ffffff;">. </span>
+        <span class="em big">It does not apply to Stage 2 players.</span>
       </strong>
     </p>
-		<p style="margin:6px 0; font-size:16px; font-weight:500; line-height:1.7; color:#ffffff;">
-  <strong>
-    請於「選手資料」欄位中填寫
-    <span style="color:#ff4d4d; font-size:18px; font-weight:900;">真實且正確的資訊</span>
-    ，並務必仔細確認所有填寫內容。此資訊將直接影響
-    <span style="color:#ff4d4d; font-size:18px; font-weight:900;">您的報名是否成功</span>
-    、主辦單位之
-    <span style="color:#ff4d4d; font-size:18px; font-weight:900;">聯繫溝通</span>
-    ，以及
-    <span style="color:#ff4d4d; font-size:18px; font-weight:900;">賽程資訊的公布</span>
-    。
-  </strong>
-</p>
-</div>
 
-    <!-- Registration Form (custom UI → submit to Google Form) -->
-    <form class="reg-form"
-          action="https://docs.google.com/forms/d/e/1FAIpQLScdCmhnP5_YyJvFfXQIZ5lToibcnRUn-uZOZdSVF7tZ05to1g/formResponse"
-          method="POST"
-    >
-        <!-- Category & Event Selection -->
-<div class="field full-row">
-  <div class="field full-row">
-  <label>Category &amp; Event Selection (組別選擇) *</label>
-
-  <div class="category-options" style="padding:10px 12px; border:1px solid rgba(255,255,255,0.12); border-radius:10px; background:rgba(0,0,0,0.18);">
-    <label class="category-item">
-      <input type="radio" name="entry.1089766370" value="Men" required>
-      <span>Men</span>
-    </label>
-
-    <label class="category-item">
-      <input type="radio" name="entry.1089766370" value="Women" required>
-      <span>Women</span>
-    </label>
-
-    <label class="category-item">
-      <input type="radio" name="entry.1089766370" value="Junior" required>
-      <span>Junior</span>
-    </label>
-  </div>
-</div>
-
-
-        <!-- Full Name -->
-        <div class="field full-row">
-            <label>Full Name (Passport Name) 全名（護照名） *</label>
-            <input type="text" name="entry.1964552089" required>
-        </div>
-
-        <!-- Country -->
-        <div class="field">
-            <label>Country (國籍)*</label>
-            <input type="text" name="entry.594902668" required>
-        </div>
-
-        <!-- Email -->
-        <div class="field">
-            <label>Email (郵箱)*</label>
-            <input type="email" name="entry.1076267609" required>
-        </div>
-
-        <!-- WhatsApp / WeChat / Phone -->
-        <div class="field">
-            <label>WhatsApp /WeChat /Phone (include Country Code) WhatsApp/ 微信/ 電話 *</label>
-            <input type="text" name="entry.323563260" required>
-        </div>
-	
-	<!-- Emergency Contact -->
-        <div class="field full-row">
-            <label>Emergency Contact Name（緊急聯繫人） *</label>
-            <input type="text" name="entry.402595991" required>
-        </div>
-
-        <!-- Emergency Contact -->
-        <div class="field full-row">
-            <label>Emergency Contact Number（緊急聯繫人電話） *</label>
-            <input type="text" name="entry.272329421" required>
-        </div>
-
-		<br>
-		<!-- Payment Section (Place BEFORE Declaration) -->
-<div class="section-title full-row">Entry Fee Payment</div>
-
-<div class="field full-row" style="margin-top:-6px;">
-  <div class="pay-info">
-
-  <!-- Block 1: EN Payment Summary -->
-  <p class="pay-line">
-    Please complete the entry fee payment of
-    <span class="em-red">160 USD</span>
-    using one of the methods below. Your registration status will remain
-    <span class="em-red">Pending</span>
-    until payment is verified.
-  </p>
-
-  <!-- Block 2: EN Special Cases -->
-  <div class="pay-box">
-    <p class="pay-subtitle">Special Cases (Secondary Verification Required)</p>
-
-    <ol class="pay-list">
-      <li>
-        If the payment is made by a <span class="em-red">friend or family member</span> on behalf of the player.
-      </li>
-      <li>
-        If the <span class="em-red">PayPal account name used for payment does not match</span> the player’s registered name.
-      </li>
-    </ol>
-
-    <p class="pay-line" style="margin-top:10px;">
-      Under either of the above circumstances, please email a
-      <span class="em-red">payment receipt screenshot</span>
-      and clearly indicate the player’s
-      <span class="em-red">Full Name (passport name)</span>
-      and
-      <span class="em-red">Category (Men / Women / Junior)</span>
-      to the <span class="em-red">official event email address</span> for
-      <span class="em-red">secondary verification</span>.
+    <p class="desc">
+      <strong>
+        <span style="color:#ffffff;">本報名表僅供</span>
+        <span class="em">第一階段（Stage 1）參賽選手</span>
+        <span style="color:#ffffff;">報名 2025 亞洲撞球錦標賽使用，並完成報名及繳納</span>
+        <span class="em">160 美元（150 美元報名費 + 10 美元手續費）</span>
+        <span style="color:#ffffff;">。</span>
+        <span class="em big">本報名表不適用於第二階段（Stage 2）之參賽選手。</span>
+      </strong>
     </p>
 
-    <p class="pay-warning">
-      Failure to provide the required verification within the specified time frame will result in the registration being deemed unsuccessful.
+    <p class="desc" style="margin-top:10px;">
+      <strong>
+        <span style="color:#ffffff;">2. This registration fee of </span>
+        <span class="em">160 USD ($150 Entry Fee + $10 PayPal Fee)</span>
+        <span style="color:#ffffff;"> applies </span>
+        <span class="em">exclusively to Stage 1 participation</span>
+        <span style="color:#ffffff;">.</span><br>
+        <span style="color:#ffffff;">Should you successfully qualify for Stage 2, an additional </span>
+        <span class="em">200 USD</span>
+        <span style="color:#ffffff;"> registration fee must be </span>
+        <span class="em">paid on-site</span>
+        <span style="color:#ffffff;">.</span>
+      </strong>
+    </p>
+
+    <p class="desc">
+      <strong>
+        <span style="color:#ffffff;">本次報名費為</span>
+        <span class="em">160 美元（150 美元報名費 + 10 美元手續費）</span>
+        <span style="color:#ffffff;">，僅適用於</span>
+        <span class="em">第一階段（Stage 1）賽事參賽</span>
+        <span style="color:#ffffff;">。</span><br>
+        <span style="color:#ffffff;">如成功晉級第二階段（Stage 2），則須另行繳納</span>
+        <span class="em">200 美元</span>
+        <span style="color:#ffffff;">之報名費，並須於</span>
+        <span class="em">現場繳納</span>
+        <span style="color:#ffffff;">。</span>
+      </strong>
     </p>
   </div>
 
-  <!-- Block 3: ZH Payment Summary -->
-  <p class="pay-line zh">
-    請完成以下方式之一的報名費支付，金額為
-    <span class="em-red">160 美元</span>。
-    在付款完成並經主辦單位確認前，您的報名狀態將維持為
-    <span class="em-red">「待確認」</span>。
-  </p>
-
-  <!-- Block 4: ZH Special Cases -->
-  <div class="pay-box zh">
-    <p class="pay-subtitle">特殊情況（需二次審核）</p>
-
-    <ol class="pay-list">
-      <li>
-        若由<span class="em-red">親友代為付款</span>（付款人非選手本人）。
-      </li>
-      <li>
-        若付款所使用之 <span class="em-red">PayPal 帳戶姓名與報名選手姓名不一致</span>。
-      </li>
-    </ol>
-
-    <p class="pay-line" style="margin-top:10px;">
-      如符合上述任一情況，請寄送
-      <span class="em-red">付款紀錄截圖</span>
-      至<span class="em-red">官方信箱</span>，並於信件備註清楚填寫選手的
-      <span class="em-red">全名（護照姓名）</span>
-      與
-      <span class="em-red">參賽組別（男子組／女子組／青少年組）</span>
-      ，以利主辦單位進行<span class="em-red">二次審核</span>。
+  <!-- Regulations -->
+  <div class="section-title">Regulations</div>
+  <div class="info" style="margin-bottom:18px;">
+    <p class="desc" style="margin-top:12px;">
+      <strong>
+        <span style="color:#ffffff;">1. Stage 1 registration is subject to limited capacity and will be </span>
+        <span class="em">closed once full</span><span style="color:#ffffff;">.</span><br><br>
+        <span style="color:#ffffff;">Stage 1 player capacity by category:</span><br>
+        <span style="color:#ffffff;">Men’s Division: </span><span class="em">96 players</span><br>
+        <span style="color:#ffffff;">Women’s Division: </span><span class="em">32 players</span><br>
+        <span style="color:#ffffff;">Junior Division: </span><span class="em">16 players</span>
+      </strong>
     </p>
 
-    <p class="pay-warning">
-      若未於指定時限內提供必要驗證資料，將視為報名未完成（報名失敗）。
+    <p class="desc">
+      <strong>
+        <span style="color:#ffffff;">1. 第一階段（Stage 1）報名名額有限，報名將於</span>
+        <span class="em">額滿即截止</span><span style="color:#ffffff;">。</span><br><br>
+        <span style="color:#ffffff;">第一階段各組別參賽名額如下：</span><br>
+        <span style="color:#ffffff;">男子組：</span><span class="em">96 人</span><br>
+        <span style="color:#ffffff;">女子組：</span><span class="em">32 人</span><br>
+        <span style="color:#ffffff;">青少年組：</span><span class="em">16 人</span>
+      </strong>
+    </p>
+
+    <p class="desc" style="margin-top:12px;">
+      <strong>
+        <span style="color:#ffffff;">2. Stage 2 qualification will be determined from Stage 1 participants based on the following selection criteria:</span><br><br>
+        <span style="color:#ffffff;">Men’s Division: </span><span class="em">12 players selected from 96</span><br>
+        <span style="color:#ffffff;">Women’s Division: </span><span class="em">4 players selected from 32</span><br>
+        <span style="color:#ffffff;">Junior Division: </span><span class="em">4 players selected from 16</span>
+      </strong>
+    </p>
+
+    <p class="desc">
+      <strong>
+        <span style="color:#ffffff;">2. 第二階段（Stage 2）之參賽資格，將自第一階段（Stage 1）參賽選手中，依下列人數標準進行選拔：</span><br><br>
+        <span style="color:#ffffff;">男子組：</span><span class="em">自 96 人中選拔 12 人</span><br>
+        <span style="color:#ffffff;">女子組：</span><span class="em">自 32 人中選拔 4 人</span><br>
+        <span style="color:#ffffff;">青少年組：</span><span class="em">自 16 人中選拔 4 人</span>
+      </strong>
     </p>
   </div>
 
-  <!-- Backup note -->
-  <p class="pay-note">
-    If PayPal button payment fails, please use the backup transfer method below.<br>
-    若 PayPal 按鈕付款失敗，請使用下方的備用轉帳方式完成付款。
-  </p>
+  <!-- Player Information -->
+  <div class="section-title">Player Information & Registration</div>
+  <div class="info" style="margin-bottom:18px;">
+    <p class="desc">
+      <strong>
+        Fill in the Player Information section with
+        <span class="em">true and accurate details</span>
+        and double-check all entries carefully. This affects the
+        <span class="em">success of your registration</span>,
+        organizer
+        <span class="em">communication</span>,
+        and the
+        <span class="em">release of competition schedules</span>.
+      </strong>
+    </p>
 
-</div>
-
-
-<!-- Primary: PayPal Button -->
-<div class="field full-row">
-  <div class="declaration" style="padding:14px 14px;">
-    <div style="font-size:14px; font-weight:700; margin-bottom:8px;">
-      <span style="color:#ffffff;">Method A (Recommended):</span>
-      <span style="color:#ff4d4d; font-size:16px; font-weight:900;">PayPal Button</span>
-    </div>
-    <div id="paypal-button-container"></div>
-    <div id="paymentMsg" style="margin-top:10px; font-size:13px; color:#ff9999;"></div>
+    <p class="desc">
+      <strong>
+        請於「選手資料」欄位中填寫
+        <span class="em">真實且正確的資訊</span>
+        ，並務必仔細確認所有填寫內容。此資訊將直接影響
+        <span class="em">您的報名是否成功</span>
+        、主辦單位之
+        <span class="em">聯繫溝通</span>
+        ，以及
+        <span class="em">賽程資訊的公布</span>。
+      </strong>
+    </p>
   </div>
-</div>
 
-<!-- Backup: Direct Transfer to PayPal Account -->
-<div class="field full-row">
-  <div class="declaration" style="padding:14px 14px;">
-    <div style="font-size:14px; font-weight:700; margin-bottom:8px;">
-      <span style="color:#ffffff;">Method B (Backup):</span>
-      <span style="color:#ff4d4d; font-size:16px; font-weight:900;">Transfer directly to our PayPal account</span>
+  <!-- Registration Form -->
+  <form class="reg-form"
+        action="https://docs.google.com/forms/d/e/1FAIpQLScdCmhnP5_YyJvFfXQIZ5lToibcnRUn-uZOZdSVF7tZ05to1g/formResponse"
+        method="POST">
+
+    <!-- Category & Event Selection -->
+    <div class="field full-row">
+      <label>Category &amp; Event Selection (組別選擇) *</label>
+      <div class="category-options">
+        <label>
+          <input type="radio" name="entry.1089766370" value="Men" required>
+          <span>Men</span>
+        </label>
+        <label>
+          <input type="radio" name="entry.1089766370" value="Women" required>
+          <span>Women</span>
+        </label>
+        <label>
+          <input type="radio" name="entry.1089766370" value="Junior" required>
+          <span>Junior</span>
+        </label>
+      </div>
     </div>
 
-    <div style="font-size:14px; line-height:1.8; color:#ffffff;">
-      <div>
-        <span style="opacity:0.9;">PayPal.Me Link:</span>
-        <a href="YOUR_PAYPALME_LINK" target="_blank"
-           style="color:#ffb347; font-weight:800; text-decoration:none;">
-          YOUR_PAYPALME_LINK
-        </a>
-      </div>
-
-      <div style="margin-top:6px;">
-        <span style="opacity:0.9;">Or send payment to PayPal Email:</span>
-        <span style="color:#ffb347; font-weight:800;">15921535199@163.com</span>
-      </div>
-
-      <div style="margin-top:10px; font-size:13px; color:#ff9999;">
-        Important: Please include your
-        <span style="color:#ff4d4d; font-weight:900;">Full Name</span>
-        and
-        <span style="color:#ff4d4d; font-weight:900;">Category (Men/Women/Junior)</span>
-        in the payment note for verification.
-      </div>
-		<div style="margin-top:10px; font-size:13px; color:#ff9999;">
-  重要提醒：請務必於付款備註中填寫您的
-  <span style="color:#ff4d4d; font-weight:900;">全名（護照姓名）</span>
-  以及
-  <span style="color:#ff4d4d; font-weight:900;">參賽組別（男子組／女子組／青少年組）</span>
-  ，以利主辦單位進行付款核對與確認。
-</div>
+    <!-- Full Name -->
+    <div class="field full-row">
+      <label>Full Name (Passport Name) 全名（護照名） *</label>
+      <input type="text" name="entry.1964552089" required>
     </div>
-  </div>
-</div>
 
-		<br>
-        <!-- Declaration Section -->
-        <div class="section-title full-row">Declaration</div>
+    <!-- Country -->
+    <div class="field">
+      <label>Country (國籍)*</label>
+      <input type="text" name="entry.594902668" required>
+    </div>
 
-        <!-- Declaration 1 -->
-        <div class="field full-row declaration">
-          <label>
-            <input type="checkbox"
-                   name="entry.297638710"
-                   value="I have read, understood, and agree to all the above declarations and terms."
-                   required>
-            <span>
-              I confirm that all personal, contact, and participation information provided in this form is true,
-              accurate, and complete. I understand that any false or misleading information may result in
-              disqualification.<br>本人確認本表格所填寫之所有個人資料、聯繫方式及參賽相關資訊，均屬真實、準確且完整。本人瞭解，若提供任何虛假或誤導性資訊，將可能導致參賽資格被取消
-            </span>
-          </label>
+    <!-- Email -->
+    <div class="field">
+      <label>Email (郵箱)*</label>
+      <input type="email" name="entry.1076267609" required>
+    </div>
+
+    <!-- WhatsApp / WeChat / Phone -->
+    <div class="field">
+      <label>WhatsApp /WeChat /Phone (include Country Code) WhatsApp/ 微信/ 電話 *</label>
+      <input type="text" name="entry.323563260" required>
+    </div>
+
+    <!-- Emergency Contact -->
+    <div class="field full-row">
+      <label>Emergency Contact Name（緊急聯繫人） *</label>
+      <input type="text" name="entry.402595991" required>
+    </div>
+
+    <div class="field full-row">
+      <label>Emergency Contact Number（緊急聯繫人電話） *</label>
+      <input type="text" name="entry.272329421" required>
+    </div>
+
+    <!-- Payment Section -->
+    <div class="section-title full-row">Entry Fee Payment</div>
+
+    <div class="field full-row">
+      <div class="pay-info">
+
+        <p class="pay-line">
+          Please complete the entry fee payment of
+          <span class="em-red">160 USD</span>
+          using one of the methods below. Your registration status will remain
+          <span class="em-red">Pending</span>
+          until payment is verified.
+        </p>
+
+        <div class="pay-box">
+          <p class="pay-subtitle">Special Cases (Secondary Verification Required)</p>
+
+          <ol class="pay-list">
+            <li>
+              If the payment is made by a <span class="em-red">friend or family member</span> on behalf of the player.
+            </li>
+            <li>
+              If the <span class="em-red">PayPal account name used for payment does not match</span> the player’s registered name.
+            </li>
+          </ol>
+
+          <p class="pay-line" style="margin-top:10px;">
+            Under either of the above circumstances, please email a
+            <span class="em-red">payment receipt screenshot</span>
+            and clearly indicate the player’s
+            <span class="em-red">Full Name (passport name)</span>
+            and
+            <span class="em-red">Category (Men / Women / Junior)</span>
+            to the <span class="em-red">official event email address</span> for
+            <span class="em-red">secondary verification</span>.
+          </p>
+
+          <p class="pay-warning">
+            Failure to provide the required verification within the specified time frame will result in the registration being deemed unsuccessful.
+          </p>
         </div>
 
-        <!-- Declaration 2 -->
-        <div class="field full-row declaration">
-          <label>
-            <input type="checkbox"
-                   name="entry.373855028"
-                   value="I have read, understood, and agree to all the above declarations and terms."
-                   required>
-            <span>
-              I consent to the event organizers, sponsors, and authorized media using my name, photograph, video
-              footage, and competition performance for event promotion, media coverage, sponsor marketing, and
-              historical archives, with no additional compensation.<br>本人同意賽事主辦單位、贊助商及授權媒體，得於無須另行支付任何補償之情況下，將本人之姓名、肖像、拍攝畫面及參賽表現，用於賽事宣傳、媒體報導、贊助商行銷推廣及歷史檔案留存等用途。
-            </span>
-          </label>
+        <p class="pay-line zh">
+          請完成以下方式之一的報名費支付，金額為
+          <span class="em-red">160 美元</span>。
+          在付款完成並經主辦單位確認前，您的報名狀態將維持為
+          <span class="em-red">「待確認」</span>。
+        </p>
+
+        <div class="pay-box">
+          <p class="pay-subtitle">特殊情況（需二次審核）</p>
+
+          <ol class="pay-list">
+            <li>若由<span class="em-red">親友代為付款</span>（付款人非選手本人）。</li>
+            <li>若付款所使用之 <span class="em-red">PayPal 帳戶姓名與報名選手姓名不一致</span>。</li>
+          </ol>
+
+          <p class="pay-line" style="margin-top:10px;">
+            如符合上述任一情況，請寄送
+            <span class="em-red">付款紀錄截圖</span>
+            至<span class="em-red">官方信箱</span>，並於信件備註清楚填寫選手的
+            <span class="em-red">全名（護照姓名）</span>
+            與
+            <span class="em-red">參賽組別（男子組／女子組／青少年組）</span>
+            ，以利主辦單位進行<span class="em-red">二次審核</span>。
+          </p>
+
+          <p class="pay-warning">
+            若未於指定時限內提供必要驗證資料，將視為報名未完成（報名失敗）。
+          </p>
         </div>
 
-        <!-- Declaration 3 -->
-        <div class="field full-row declaration">
-          <label>
-            <input type="checkbox"
-                   name="entry.1709603742"
-                   value="I have read, understood, and agree to all the above declarations and terms."
-                   required>
-            <span>
-              I acknowledge and agree to abide by all official rules, regulations, and referee decisions of the
-              event. I understand that the referee’s judgment is final and irrevocable.<br>本人知悉並同意遵守本賽事之一切官方規章、制度，以及裁判之判決。本人瞭解，裁判之裁定為最終決定，且不得異議。
-            </span>
-          </label>
+        <p class="pay-note">
+          If PayPal button payment fails, please use the backup transfer method below.<br>
+          若 PayPal 按鈕付款失敗，請使用下方的備用轉帳方式完成付款。
+        </p>
+      </div>
+    </div>
+
+    <!-- Method A -->
+    <div class="field full-row">
+      <div class="declaration" style="padding:14px 14px;">
+        <div style="font-size:14px; font-weight:700; margin-bottom:8px;">
+          <span style="color:#ffffff;">Method A (Recommended):</span>
+          <span style="color:#ff4d4d; font-size:16px; font-weight:900;">PayPal Button</span>
         </div>
 
-        <!-- Submit (locked before payment) -->
-        <div class="submit-row">
-            <button type="submit" id="submitBtn" >Submit Registration</button>
-            <div class="payment-note">
-                <p style="font-size:13px; color:#ff9999; margin-top:8px;">
-  Registration will be reviewed and confirmed after payment verification.
-  Please ensure your payment is completed.<br>報名將於付款驗證通過後進行審核並確認。請確保您已完成付款。
-</p>
-            </div>
+        <div id="paypal-button-container"></div>
+        <div id="paymentMsg" style="margin-top:10px; font-size:13px; color:#ff9999;"></div>
+      </div>
+    </div>
+
+    <!-- Method B -->
+    <div class="field full-row">
+      <div class="declaration" style="padding:14px 14px;">
+        <div style="font-size:14px; font-weight:700; margin-bottom:8px;">
+          <span style="color:#ffffff;">Method B (Backup):</span>
+          <span style="color:#ff4d4d; font-size:16px; font-weight:900;">Transfer directly to our PayPal account</span>
         </div>
-    </form>
 
-    <iframe name="hidden_iframe" style="display:none;"></iframe>
+        <div style="font-size:14px; line-height:1.8; color:#ffffff;">
+          <div>
+            <span style="opacity:0.9;">PayPal.Me Link:</span>
+            <a href="YOUR_PAYPALME_LINK" target="_blank"
+              style="color:#ffb347; font-weight:800; text-decoration:none;">
+              YOUR_PAYPALME_LINK
+            </a>
+          </div>
 
+          <div style="margin-top:6px;">
+            <span style="opacity:0.9;">Or send payment to PayPal Email:</span>
+            <span style="color:#ffb347; font-weight:800;">15921535199@163.com</span>
+          </div>
+
+          <div style="margin-top:10px; font-size:13px; color:#ff9999;">
+            Important: Please include your
+            <span style="color:#ff4d4d; font-weight:900;">Full Name</span>
+            and
+            <span style="color:#ff4d4d; font-weight:900;">Category (Men/Women/Junior)</span>
+            in the payment note for verification.
+          </div>
+
+          <div style="margin-top:10px; font-size:13px; color:#ff9999;">
+            重要提醒：請務必於付款備註中填寫您的
+            <span style="color:#ff4d4d; font-weight:900;">全名（護照姓名）</span>
+            以及
+            <span style="color:#ff4d4d; font-weight:900;">參賽組別（男子組／女子組／青少年組）</span>
+            ，以利主辦單位進行付款核對與確認。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Declaration -->
+    <div class="section-title full-row">Declaration</div>
+
+    <div class="field full-row declaration">
+      <label>
+        <input type="checkbox" name="entry.297638710"
+          value="I have read, understood, and agree to all the above declarations and terms." required>
+        <span>
+          I confirm that all personal, contact, and participation information provided in this form is true,
+          accurate, and complete. I understand that any false or misleading information may result in
+          disqualification.<br>
+          本人確認本表格所填寫之所有個人資料、聯繫方式及參賽相關資訊，均屬真實、準確且完整。本人瞭解，若提供任何虛假或誤導性資訊，將可能導致參賽資格被取消
+        </span>
+      </label>
+    </div>
+
+    <div class="field full-row declaration">
+      <label>
+        <input type="checkbox" name="entry.373855028"
+          value="I have read, understood, and agree to all the above declarations and terms." required>
+        <span>
+          I consent to the event organizers, sponsors, and authorized media using my name, photograph, video
+          footage, and competition performance for event promotion, media coverage, sponsor marketing, and
+          historical archives, with no additional compensation.<br>
+          本人同意賽事主辦單位、贊助商及授權媒體，得於無須另行支付任何補償之情況下，將本人之姓名、肖像、拍攝畫面及參賽表現，用於賽事宣傳、媒體報導、贊助商行銷推廣及歷史檔案留存等用途。
+        </span>
+      </label>
+    </div>
+
+    <div class="field full-row declaration">
+      <label>
+        <input type="checkbox" name="entry.1709603742"
+          value="I have read, understood, and agree to all the above declarations and terms." required>
+        <span>
+          I acknowledge and agree to abide by all official rules, regulations, and referee decisions of the
+          event. I understand that the referee’s judgment is final and irrevocable.<br>
+          本人知悉並同意遵守本賽事之一切官方規章、制度，以及裁判之判決。本人瞭解，裁判之裁定為最終決定，且不得異議。
+        </span>
+      </label>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-row">
+      <button type="submit" id="submitBtn">Submit Registration</button>
+      <div class="payment-note">
+        <p style="font-size:13px; color:#ff9999; margin-top:8px;">
+          Registration will be reviewed and confirmed after payment verification. Please ensure your payment is completed.<br>
+          報名將於付款驗證通過後進行審核並確認。請確保您已完成付款。
+        </p>
+      </div>
+    </div>
+
+  </form>
+
+  <iframe name="hidden_iframe" style="display:none;"></iframe>
 </div>
 
 <!-- PayPal SDK -->
@@ -983,14 +758,14 @@ Indonesia<br>
 
 <script>
 paypal.Buttons({
-    createOrder: function(data, actions) {
-        return actions.order.create({
-            purchase_units: [{
-                amount: { value: '160.00' } // Entry fee USD 160
-            }]
-        });
-    },
-    onApprove: function(data, actions) {
+  createOrder: function(data, actions) {
+    return actions.order.create({
+      purchase_units: [{
+        amount: { value: '160.00' }
+      }]
+    });
+  },
+  onApprove: function(data, actions) {
     return actions.order.capture().then(function(details) {
       var el = document.getElementById("paymentMsg");
       if (el) {
@@ -1000,7 +775,7 @@ paypal.Buttons({
       }
     });
   },
-    onError: function(err) {
+  onError: function(err) {
     var el = document.getElementById("paymentMsg");
     if (el) {
       el.innerHTML = "PayPal payment could not be completed. Please use Method B (PayPal transfer) as a backup.";
