@@ -647,18 +647,31 @@
       </div>
     </div>
 
-    <!-- Method A -->
-    <div class="field full-row">
-      <div class="declaration" style="padding:14px 14px;">
-        <div style="font-size:14px; font-weight:700; margin-bottom:8px;">
-          <span style="color:#ffffff;">Method A (Recommended):</span>
-          <span style="color:#ff4d4d; font-size:16px; font-weight:900;">PayPal Button</span>
-        </div>
-
-        <div id="paypal-button-container"></div>
-        <div id="paymentMsg" style="margin-top:10px; font-size:13px; color:#ff9999;"></div>
-      </div>
+    <!-- Method A for Men & Women -->
+<div class="field full-row">
+  <div class="declaration" style="padding:14px 14px;">
+    <div style="font-size:14px; font-weight:700; margin-bottom:8px;">
+      <span style="color:#ffffff;">Method A (Recommended):</span>
+      <span style="color:#ff4d4d; font-size:16px; font-weight:900;">PayPal Button for Men & Women (160USD)</span>
     </div>
+
+    <div id="paypal-button-container-men"></div>
+    <div id="paymentMsg-men" style="margin-top:10px; font-size:13px; color:#ff9999;"></div>
+  </div>
+</div>
+
+<!-- Method A for Junior -->
+<div class="field full-row">
+  <div class="declaration" style="padding:14px 14px;">
+    <div style="font-size:14px; font-weight:700; margin-bottom:8px;">
+      <span style="color:#ffffff;">Method A (Recommended):</span>
+      <span style="color:#ff4d4d; font-size:16px; font-weight:900;">PayPal Button for Junior (100USD)</span>
+    </div>
+
+    <div id="paypal-button-container-junior"></div>
+    <div id="paymentMsg-junior" style="margin-top:10px; font-size:13px; color:#ff9999;"></div>
+  </div>
+</div>
 
     <!-- Method B -->
     <div class="field full-row">
@@ -808,35 +821,65 @@
 <script src="https://www.paypal.com/sdk/js?client-id=ARDkLfOQCwWNCCc5bjebzqN14vo-ZLNkSzBQWzyw0OkCINOY7rLg6BXIudTH_YYXoheumX84mFL4UNvX&currency=USD"></script>
 
 <script>
-paypal.Buttons({
-  createOrder: function(data, actions) {
-    return actions.order.create({
-      purchase_units: [{
-        amount: { value: '160.00' }
-      }]
-    });
-  },
-  onApprove: function(data, actions) {
-    return actions.order.capture().then(function(details) {
-      var el = document.getElementById("paymentMsg");
+  // PayPal button for Men & Women (160 USD)
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: '160.00' }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        var el = document.getElementById("paymentMsg-men");
+        if (el) {
+          el.innerHTML = "Payment completed. Please submit your registration. (Status will be confirmed after verification.)";
+        } else {
+          alert("Payment completed. Please submit your registration.");
+        }
+      });
+    },
+    onError: function(err) {
+      var el = document.getElementById("paymentMsg-men");
       if (el) {
-        el.innerHTML = "Payment completed. Please submit your registration. (Status will be confirmed after verification.)";
+        el.innerHTML = "PayPal payment could not be completed. Please use Method B (PayPal transfer) as a backup.";
       } else {
-        alert("Payment completed. Please submit your registration.");
+        alert("PayPal payment failed. Please use the backup PayPal transfer method.");
       }
-    });
-  },
-  onError: function(err) {
-    var el = document.getElementById("paymentMsg");
-    if (el) {
-      el.innerHTML = "PayPal payment could not be completed. Please use Method B (PayPal transfer) as a backup.";
-    } else {
-      alert("PayPal payment failed. Please use the backup PayPal transfer method.");
+      console.error(err);
     }
-    console.error(err);
-  }
-}).render('#paypal-button-container');
-</script>
+  }).render('#paypal-button-container-men');
 
+  // PayPal button for Junior (100 USD)
+  paypal.Buttons({
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: '100.00' }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        var el = document.getElementById("paymentMsg-junior");
+        if (el) {
+          el.innerHTML = "Payment completed. Please submit your registration. (Status will be confirmed after verification.)";
+        } else {
+          alert("Payment completed. Please submit your registration.");
+        }
+      });
+    },
+    onError: function(err) {
+      var el = document.getElementById("paymentMsg-junior");
+      if (el) {
+        el.innerHTML = "PayPal payment could not be completed. Please use Method B (PayPal transfer) as a backup.";
+      } else {
+        alert("PayPal payment failed. Please use the backup PayPal transfer method.");
+      }
+      console.error(err);
+    }
+  }).render('#paypal-button-container-junior');
+</script>
 </body>
 </html>
