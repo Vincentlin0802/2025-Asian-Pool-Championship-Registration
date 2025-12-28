@@ -845,6 +845,12 @@
     },
     onApprove: function(data, actions) {
       return actions.order.capture().then(function(details) {
+        // GA4: payment success for Men & Women
+        if (typeof gtag === 'function') {
+          gtag('event', 'payment_success', {
+            method: 'paypal_men_women'
+          });
+        }
         var el = document.getElementById("paymentMsg-men");
         if (el) {
           el.innerHTML = "Payment completed. Please submit your registration. (Status will be confirmed after verification.)";
@@ -854,6 +860,12 @@
       });
     },
     onError: function(err) {
+      // GA4: payment fail for Men & Women
+      if (typeof gtag === 'function') {
+        gtag('event', 'payment_fail', {
+          method: 'paypal_men_women'
+        });
+      }
       var el = document.getElementById("paymentMsg-men");
       if (el) {
         el.innerHTML = "PayPal payment could not be completed. Please use Method B (PayPal transfer) as a backup.";
@@ -875,6 +887,12 @@
     },
     onApprove: function(data, actions) {
       return actions.order.capture().then(function(details) {
+        // GA4: payment success for Junior
+        if (typeof gtag === 'function') {
+          gtag('event', 'payment_success', {
+            method: 'paypal_junior'
+          });
+        }
         var el = document.getElementById("paymentMsg-junior");
         if (el) {
           el.innerHTML = "Payment completed. Please submit your registration. (Status will be confirmed after verification.)";
@@ -884,6 +902,12 @@
       });
     },
     onError: function(err) {
+      // GA4: payment fail for Junior
+      if (typeof gtag === 'function') {
+        gtag('event', 'payment_fail', {
+          method: 'paypal_junior'
+        });
+      }
       var el = document.getElementById("paymentMsg-junior");
       if (el) {
         el.innerHTML = "PayPal payment could not be completed. Please use Method B (PayPal transfer) as a backup.";
@@ -893,6 +917,27 @@
       console.error(err);
     }
   }).render('#paypal-button-container-junior');
+</script>
+<script>
+	
+	// 4) Track submit button click
+  var submitBtn = document.getElementById('submitBtn');
+  if (submitBtn) {
+    submitBtn.addEventListener('click', function(){
+      if (typeof gtag === 'function') {
+        gtag('event', 'submit_registration_click');
+      }
+    });
+  }
+	// Track successful form submission (front-end submit)
+  var form = document.querySelector('.reg-form');
+  if (form) {
+    form.addEventListener('submit', function(){
+      if (typeof gtag === 'function') {
+        gtag('event', 'submit_registration_success');
+      }
+    });
+  }
 </script>
 </body>
 </html>
